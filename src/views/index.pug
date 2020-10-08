@@ -1,0 +1,25 @@
+html
+    head
+        title OTA-Server Home Automation
+        link(rel="stylesheet", href="/css/style.css")
+    body
+        h1 Device List
+        table
+            th Device ID
+            th Description
+            th Model
+            th Location
+            th Firmware Image
+            th Installed Version
+            th Available Version
+            - var i=0
+            each device in deviceList
+                - i = i+1
+                tr(class=(i % 2 == 0) ? 'even' : 'odd')
+                    td= device.name
+                    td= device.description
+                    td= device.model
+                    td= device.location
+                    td 
+                    td
+                    td

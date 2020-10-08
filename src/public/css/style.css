@@ -1,0 +1,28 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+h1 {
+    margin-bottom : 20px;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+tr.even {
+    background-color: rgb(196, 247, 230);
+}
+
+th,td {
+    padding-left : 5px;
+    padding-right : 5px;
+    padding-bottom : 2px;
+    padding-top : 2px;
+    text-align: left;
+}
+
+th {
+    border-bottom: black solid 1px;
+    margin-bottom: 40px;
+}

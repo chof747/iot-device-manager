@@ -1,0 +1,38 @@
+version: "3.7"
+
+services:
+  iot-server-test:
+    container_name: app-test
+    build:
+      dockerfile: Dockerfile
+      context: .
+    environment:
+      - TZ=Europe/Amsterdam
+    ports:
+      - 3010:80
+    volumes:
+      - .:/usr/src/app:delegated
+      - ./environments/.env.test:/usr/src/app/.env:delegated
+      - /usr/src/app/node_modules
+    command:
+      npm run dev
+    networks:
+      iot-backend-test:
+        aliases: 
+          - app
+
+  database-test:
+    image: mongo:latest
+    container_name: mongo-test
+    ports:
+      - 27018:27017
+    volumes:
+      - /data/db
+    networks:
+      iot-backend-test:
+        aliases: 
+          - db
+networks:
+  iot-backend-test:
+    name: iot-backend-test
+    

@@ -1,0 +1,13 @@
+{
+    "StatusNET": {
+        "Hostname": "DVES_FA7621-5665",
+        "IPAddress": "10.0.1.24",
+        "Gateway": "10.0.1.1",
+        "Subnetmask": "255.255.255.0",
+        "DNSServer": "10.0.1.12",
+        "Mac": "68:C6:3A:FA:76:21",
+        "Webserver": 2,
+        "WifiConfig": 4,
+        "WifiPower": 17.0
+    }
+}   
