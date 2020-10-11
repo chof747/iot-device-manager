@@ -1,0 +1,12 @@
+extends ../layout.pug
+include ../includes/textfield.pug
+include ../includes/actions.pug
+
+block content
+    h1= (create) ?  'Add Location' : 'Edit Location'
+    form(method='POST', action='')
+        input(type='hidden', name='id', value=(create) ? '': location.id)
+        table
+            +textField('name', 'Location Name', (create) ? '' : location.name)
+            +textField('description', 'Location Description', (create) ? '' : location.description)
+            +actions('Submit')

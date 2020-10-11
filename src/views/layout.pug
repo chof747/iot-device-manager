@@ -1,0 +1,22 @@
+mixin sidebarLink(link,icon,label)
+    p
+        a(href=link) 
+            span(class='material-icons title md-18')=`${icon}`
+            span(class='link-text')=`${label}`
+
+html
+    head
+        title OTA-Server Home Automation
+        link(rel="stylesheet", href="/css/style.css")
+    body
+        .sidenav
+            .title
+                span(class='material-icons title') memory
+                span(class='title') OTA-Server
+            +sidebarLink('/','home', 'Main')
+            +sidebarLink('/location', 'room', 'Locations')
+            +sidebarLink('/firmware', 'build', 'Firmware')
+        .main
+            block content
+    footer
+        p (c) Christian Hofbauer 2020

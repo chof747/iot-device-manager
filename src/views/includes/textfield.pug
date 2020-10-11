@@ -1,0 +1,7 @@
+mixin textField(fName, fLabel, fVariable)
+    tr  
+        td 
+            label(for=fName)= `${fLabel}:`
+        td
+            input.form-control(type="text", name=`${fName}`, id=`${fName}`, value=(undefined===fVariable ? "" : fVariable))    
+

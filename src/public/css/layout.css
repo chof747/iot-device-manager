@@ -1,0 +1,52 @@
+.sidenav {
+    height: 100%;
+    width: 160px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #345d71;
+    overflow-x: hidden;
+    padding-top: 5px;
+    padding-left: 5px;
+    color: white;
+}
+
+div.sidenav>div.title {
+      font-size: 17px;
+      font-weight: bold;
+}
+
+.sidenav .title {
+    vertical-align: middle;
+    margin-bottom: 5px;
+}
+
+*.sidenav>p {
+    padding-left: 10px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+*.sidenav a {
+    color: white;
+    text-decoration: none;
+}
+
+*.sidenav .link-text {
+    vertical-align: middle;
+    padding-left: 3px;
+}
+  
+  .main {
+    margin-left: 160px; /* Same as the width of the sidenav */
+    padding: 0px 10px;
+  }
+
+  footer {
+    position: absolute;
+    bottom: 0px;
+    left: 160px;
+    margin-left: 10px;
+  }
+  

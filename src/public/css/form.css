@@ -1,0 +1,27 @@
+input {
+    font : inherit;
+    border: none;
+    padding: 3px;
+    padding-bottom: 1px;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: darkgray;
+    margin-bottom : 2px;
+}
+
+input:focus {
+    outline: none;
+    border-bottom-color: dimgrey;
+}
+
+button {
+    font : inherit;
+}
+
+td.actions {
+    text-align: center;
+}
+
+form td.info {
+    color: dimgrey;
+}
