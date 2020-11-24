@@ -1,4 +1,8 @@
-input {
+select {
+    width: 100%;
+}
+
+select,input {
     font : inherit;
     border: none;
     padding: 3px;
@@ -9,9 +13,13 @@ input {
     margin-bottom : 2px;
 }
 
-input:focus {
+select:focus,input:focus {
     outline: none;
     border-bottom-color: dimgrey;
+}
+
+select:focus {
+    background-color: var(--text-highlighting-color);
 }
 
 button {

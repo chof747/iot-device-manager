@@ -27,8 +27,8 @@ const deviceSchema = mongoose.Schema({
     },
 
     location : {
-        type: String,
-        required: false        
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Location"
     }
 }, {
     timestamps : true

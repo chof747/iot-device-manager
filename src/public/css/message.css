@@ -2,11 +2,53 @@
     border-style: solid;
     border-width: 1px;
     border-radius: 4px;
-
+    
     padding: 2px;
     padding-left: 5px;
+    
+    display: flex;
+    align-items: center;
+}
+
+.message::before {
+    font-family: 'Material Icons';
+    font-size: 14pt;
+
+    padding-right: 3px;
+
+    display: flex;
+    align-items: center;
 }
 
 .warning {
     border-color: orange;
+    background-color: #fff5e9;
+    color: #804600;
+}
+
+.warning::before {
+    content: "warning";
+    color: orange;
+}
+
+.error {
+    border-color: red;
+    background-color: #ffd0d0;
+    color: #800000;
+}
+
+.error::before {
+    content: "error";
+    color: red;
+}
+
+.info {
+    border-color: green;
+    background-color: #cbfdcb;
+    color: #003300
+}
+
+.info::before {
+    content: "info";
+    color: green;
 }

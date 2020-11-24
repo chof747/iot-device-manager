@@ -15,9 +15,7 @@ async function locationController(req, res) {
         if (req.query['msgtype']) {
                 params.msgtype = req.query['msgtype'];
         }
-        console.log(req.query);
-        console.log(params);
-       
+               
         res.render('location', params);
 }
 

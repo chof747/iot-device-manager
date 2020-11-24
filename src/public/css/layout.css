@@ -38,10 +38,14 @@ div.sidenav>div.title {
     padding-left: 3px;
 }
   
-  .main {
-    margin-left: 160px; /* Same as the width of the sidenav */
-    padding: 0px 10px;
-  }
+.main {
+   margin-left: 160px; /* Same as the width of the sidenav */
+   padding: 0px 10px;
+ }
+
+ .content-area {
+   width: max-content;
+ }
 
   footer {
     position: absolute;

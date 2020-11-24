@@ -1,0 +1,38 @@
+version: "3.7"
+
+services:
+  iot-server-prod:
+    container_name: app-prod
+    build:
+      dockerfile: Dockerfile
+      context: .
+    environment:
+      - TZ=Europe/Amsterdam
+    ports:
+      - 80:80
+    volumes:
+      - .:/usr/src/app
+      - ./environments/.env.prod:/usr/src/app/.env
+      - /usr/src/app/node_modules
+    command:
+      npm run dev
+    networks:
+      iot-backend-prod:
+        aliases: 
+          - app
+
+  database-prod:
+    image: mongo:latest
+    container_name: mongo-prod
+    ports:
+      - 27018:27017
+    volumes:
+      - /var/iot-server/data:/data/db
+    networks:
+      iot-backend-prod:
+        aliases: 
+          - db
+networks:
+  iot-backend-prod:
+    name: iot-backend-prod
+    

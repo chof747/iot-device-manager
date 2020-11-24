@@ -3,6 +3,7 @@ function setupRoutes(app) {
     
     app.get('/', require('../api/routes/main'));
     app.get('/device/edit/:deviceId', require('../api/routes/device/edit'));
+    app.get('/device/post/:deviceId', require('../api/routes/device/edit'));
 
     const location = require('../api/routes/location/edit');
 
