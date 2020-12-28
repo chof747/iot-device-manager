@@ -8,6 +8,9 @@ services:
       context: .
     environment:
       - TZ=${TZ}
+      - MQTT_BROKER=broker
+      - MQTT_USER=iot-dev
+      - MQTT_PASSWORD=iot-dev
     ports:
       - ${CONTAINER_PORT}:3000
     volumes:
