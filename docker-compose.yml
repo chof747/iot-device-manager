@@ -1,0 +1,51 @@
+version: "3.7"
+
+services:
+  app:
+    container_name: iot-device-manager
+    build:
+      dockerfile: Dockerfile
+      context: .
+    environment:
+      - TZ=${TZ}
+    ports:
+      - ${CONTAINER_PORT}:3000
+    volumes:
+      - .:/usr/src/app
+      - ./environments/.env:/usr/src/app/.env
+      - /usr/src/app/node_modules
+      - ${DATADIR}:/var/data
+    command:
+      bash -c "./update-db.sh && npm run ${START}"
+    networks:
+      backend:
+        aliases: 
+          - app
+      frontend:
+        aliases: 
+          - app
+
+  mqtt-broker:
+    image: eclipse-mosquitto
+    container_name: mqtt
+    ports:
+      - 1883:1883
+      - 8883:8883
+    networks:
+      backend:
+        aliases:
+          - broker
+      frontend:
+        aliases: 
+          - broker
+    volumes:
+      - ./mosquitto/:/mosquitto:delegated
+
+
+
+networks:
+  backend:
+    name: backend
+  frontend:
+    name: frontend
+    

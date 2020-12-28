@@ -1,0 +1,14 @@
+{
+  "development": {
+    "storage": "/var/data/boilerplate.db",
+    "dialect": "sqlite",
+    "seederStorage" : "sequelize"
+  },
+  "test": {
+  },
+  "production": {
+    "storage": "/var/data/boilerplate.db",
+    "dialect": "sqlite",
+    "seederStorage" : "sequelize"
+  }
+}

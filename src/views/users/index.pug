@@ -1,0 +1,20 @@
+extends ../layout.pug
+
+block title
+    h1 User List
+block content
+    table(class='list')
+        th First Name
+        th Last Name
+        th E-Mail
+        th Actions
+        - var i=0
+        each user in users
+            - i = i+1
+            tr(class=(i % 2 == 0) ? 'even' : 'odd')
+                td= user.firstName
+                td= user.lastName
+                td= user.email
+                td 
+                    a(class="action", href=`users/edit/${user.id}`) edit &nbsp;
+                    a(class="action", href=`users/delete/${user.id}`) delete

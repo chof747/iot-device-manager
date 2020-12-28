@@ -1,0 +1,16 @@
+extends ../layout.pug
+include ../includes/textfield.pug
+include ../includes/actions.pug
+
+block content
+    if (user!=null)
+        h1 Edit Device
+        form(method='POST', action='')
+            input(type='hidden', name='id', value=(create) ? '' : user.id)
+            table
+                +textField('firstName', 'First Name', user.firstName)
+                +textField('lastName', 'Last Name', user.lastName)
+                +textField('email', 'E-Mail Address', user.email)
+                +actions('Update')
+    else
+        p No user with ID #{userid} found!
