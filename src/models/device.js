@@ -20,7 +20,8 @@ module.exports = (sequelize, DataTypes) => {
       is: {
         args : "^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$",
         msg : "mac must be a valid MAC address XX:XX:XX:XX:XX:XX"
-      }
+      },
+      unique : true
     },
     description: DataTypes.STRING,
     model: DataTypes.STRING
