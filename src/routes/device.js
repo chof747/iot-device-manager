@@ -4,41 +4,41 @@ const { body, validationResult } = require("express-validator");
 const bodyParser = require('body-parser');
 
 //Models needed
-var User = require('../models/index').User;
+var Device = require('../models/index').Device;
 
 const controller = {
 
   list: async function (req, res)
   //***************************************************************************
   {
-    var users = await User.findAll();
-    res.render('users/index', {
-      users : users
+    var devices = await Device.findAll();
+    res.render('device/index', {
+      devices : devices
     });
   },
 
   edit: async function (req, res)
   //***************************************************************************
   {
-    var user = null;
+    var device = null;
     var create = false;
 
     if (undefined !== req.params.id) {
-      user = await User.findByPk(req.params.id);
+      device = await Device.findByPk(req.params.id);
     } else {
-      user = User.build();
+      device = Device.build();
       create = true;
     }
-    res.render('users/edit', {
-      user: user,
-      userid: req.params.userId,
+    res.render('device/edit', {
+      device: device,
+      deviceid: req.params.id,
       create : create
     });
   },
 
   update: [
     bodyParser.urlencoded({ extended: false }),
-    body('firstName', 'First name is required').isLength({ min: 1 }).trim().escape(),
+    body('name', 'Name is required').isLength({ min: 1 }).trim().escape(),
     //add additional validations here
     async (req, res) => {
       //****************************************************************************
@@ -46,25 +46,26 @@ const controller = {
       var user = null;
 
       if ('' !== req.body.id) {
-        user = await User.findByPk(req.body.id);
+        device = await Device.findByPk(req.body.id);
       } else {
-        user = User.build();
+        device = Device.build();
       }
 
       //update fields here
-      user.firstName = req.body.firstName;
-      user.lastName = req.body.lastName;
-      user.email = req.body.email;
+      device.name = req.body.name;
+      device.mac = req.body.mac;
+      device.model = req.body.model;
+      device.description = req.body.description;
 
       //error Handling
       if (!errors.isEmpty()) {
-        res.render('users/edit', {
-          user: user,
+        res.render('device/edit', {
+          device: device,
           errors: errors
         });
       } else {
-        await user.save();
-        controller.list(req, res);
+        await device.save();
+        res.redirect('/device');
       }
 
 

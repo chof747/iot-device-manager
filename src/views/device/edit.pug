@@ -1,0 +1,23 @@
+extends ../layout.pug
+include ../includes/textfield.pug
+include ../includes/actions.pug
+
+block content
+    h1 Edit Device
+    form(method='POST', action='')
+        input(type='hidden', name='id', value=(create) ? '' : device.id)
+        table
+            tr
+                td(class='infoonly') MAC Address :
+                td(class='infoonly') #{device.mac}
+            +textField('name', 'Device Name', device.name)
+            +textField('description', 'Description', device.description)
+            //+textField('location', 'Location', device.location)
+            //    td
+            //        label(for="location") Location:
+            //    td
+            //        select(name="location", class="form-control")
+            //            each location in locations 
+            //                option(value=location.id) #{location.name}
+            +textField('model', 'Model', device.model)
+            +actions('Submit')
