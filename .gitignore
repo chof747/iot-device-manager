@@ -3,3 +3,4 @@ package-lock.json
 data
 .env
 mosquitto/config
+mosquitto/config/mosquitto.conf

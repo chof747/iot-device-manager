@@ -34,7 +34,6 @@ class TasmotaDiscoverer extends BaseDiscoverer {
                 model : jsonBody.StatusFWR.Hardware
             });
     
-            console.log(device);
             await device.save();    
         }
 

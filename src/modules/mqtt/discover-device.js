@@ -24,9 +24,11 @@ class DiscoverDevice {
         if (match) {
             if (this._currentDevice === null) {
     //            console.log(match[2] + " - " + match[3]);
-                Device.findByName(match[2]).then(function (devices) {
+                Device.findOne({
+                    where : { name : match[2] }
+                }).then(function (device) {
 
-                    if (devices.length == 0) {
+                    if (device === null) {
                         this._currentDevice = match[2];
                         console.log("Starting discovery for: " + this._currentDevice);
                         this.requestDetails(match[2]);
