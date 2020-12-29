@@ -1,0 +1,24 @@
+extends ../layout.pug
+
+block title
+    h1 Location List
+block content
+    div
+        a(class="action", href="/location/add") 
+            span(class="material-icons md-24") playlist_add
+    div(class=`message ${msgtype}`) #{msg}
+    table(class='list')
+        th Name
+        th Description
+        th Actions
+        - var i=0
+        each location in locations
+            - i = i+1
+            tr(class=(i % 2 == 0) ? 'even' : 'odd')
+                td= location.name
+                td= location.description
+                td 
+                    a(class="action", href=`location/edit/${location.id}`) 
+                        span(class='material-icons md-18') edit
+                    a(class="action", href=`location/delete/${location.id}`) 
+                        span(class='material-icons md-18') delete

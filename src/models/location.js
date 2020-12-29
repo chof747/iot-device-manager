@@ -1,18 +1,24 @@
-const mongoose=require("mongoose");
-
-const locationSchema = mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    description : {
-        type: String,
-        required: false
+'use strict';
+const {
+  Model
+} = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  class Location extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      Location.hasMany(models.Device);
     }
-}, {
-    timestamps : true
-});
-
-const Location = mongoose.model('Location', locationSchema);
-
-module.exports = Location;
+  };
+  Location.init({
+    name: DataTypes.STRING,
+    description: DataTypes.STRING
+  }, {
+    sequelize,
+    modelName: 'Location',
+  });
+  return Location;
+};

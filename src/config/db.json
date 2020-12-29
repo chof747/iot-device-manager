@@ -1,0 +1,14 @@
+{
+  "development": {
+    "storage": "/var/data/iot-devices.db",
+    "dialect": "sqlite",
+    "seederStorage" : "sequelize"
+  },
+  "test": {
+  },
+  "production": {
+    "storage": "/var/data/iot-devices.db",
+    "dialect": "sqlite",
+    "seederStorage" : "sequelize"
+  }
+}

@@ -1,51 +1,33 @@
-const mongoose=require("mongoose");
-
-const deviceSchema = mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    mac : {
-        type: String,
-        unique : true,
-        required: true,
-        validate: {
-            validator: function(value) {
-              return /^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})/.test(value);
-            },
-            message: props => `${props.value} is not a valid MAC address!`
-        }
-        
-    },
-    description : {
-        type: String,
-        required: false
-    },
-    model : {
-        type: String,
-        required: false
-    },
-
-    location : {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Location"
+'use strict';
+const {
+  Model
+} = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  class Device extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      Device.belongsTo(models.Location);
     }
-}, {
-    timestamps : true
-});
-
-deviceSchema.statics.findByMac = function(mac) {
-    return this.find({ 
-        mac: mac
-    });
+  };
+  Device.init({
+    name: DataTypes.STRING,
+    mac: {
+      type : DataTypes.STRING,
+      is: {
+        args : "^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$",
+        msg : "mac must be a valid MAC address XX:XX:XX:XX:XX:XX"
+      },
+      unique : true
+    },
+    description: DataTypes.STRING,
+    model: DataTypes.STRING
+  }, {
+    sequelize,
+    modelName: 'Device',
+  });
+  return Device;
 };
-
-deviceSchema.statics.findByName = function(name) {
-    return this.find({
-        name : name
-    });
-};
-
-const Device = mongoose.model('Device', deviceSchema);
-
-module.exports = Device;

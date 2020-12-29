@@ -1,0 +1,5 @@
+.gitignore
+docker-compose.yml
+data
+node_modules
+*.code-workspace

@@ -1,28 +1,5 @@
-extends layout.pug
+extends layout
 
-block title 
-    h1 Device List
 block content
-    table(class='list')
-        th Device ID
-        th Description
-        th Model
-        th Location
-        th Firmware Image
-        th Installed Version
-        th Available Version
-        th Actions
-        - var i=0
-        each device in deviceList
-            - i = i+1
-            tr(class=(i % 2 == 0) ? 'even' : 'odd')
-                td= device.name
-                td= device.description
-                td= device.model
-                td= device.location
-                td 
-                td
-                td
-                td 
-                    a(class="action", href=`device/edit/${device._id}`) 
-                        span(class='material-icons md-18') edit
+  h1= title
+  p Welcome to #{title}

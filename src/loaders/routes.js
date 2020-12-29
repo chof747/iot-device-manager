@@ -1,18 +1,18 @@
+const fs = require('fs');
+const path = require('path');
 
-function setupRoutes(app) {
-    
-    app.get('/', require('../api/routes/main'));
-    app.get('/device/edit/:deviceId', require('../api/routes/device/edit'));
-    app.get('/device/post/:deviceId', require('../api/routes/device/edit'));
+load = function(app) {
 
-    const location = require('../api/routes/location/edit');
+    fs
+    .readdirSync(__dirname + "/../routes")
+    .forEach(file => {
+        const route = require(path.join("../routes", file));
+        
+        urlpath = path.basename(file, ".js");
+        urlpath = (urlpath == "index") ? '' : urlpath;
+        app.use(`/${urlpath}`, route);
 
-    app.get('/location', require('../api/routes/location'));
-    app.get('/location/add', location.get);
-    app.post('/location/add', location.post);
-    app.get('/location/edit/:locationId', location.get);
-    app.get('/location/delete/:locationId', require('../api/routes/location/delete'));
-    app.post('/location/edit/:locationId', location.post);
-}
+    });
+};
 
-module.exports = setupRoutes;
+module.exports = load;
