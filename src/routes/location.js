@@ -4,7 +4,6 @@ const { body, validationResult } = require("express-validator");
 const bodyParser = require('body-parser');
 
 //Models needed
-var Device = require('../models/index').Device;
 var Location = require('../models/index').Location;
 
 const controller = {
@@ -12,34 +11,27 @@ const controller = {
   list: async function (req, res)
   //***************************************************************************
   {
-    var devices = await Device.findAll({
-      include : "Location"
-    });
-    console.log(devices);
-    res.render('device/index', {
-      devices : devices
+    var locations = await Location.findAll();
+    res.render('location/index', {
+      locations : locations
     });
   },
 
   edit: async function (req, res)
   //***************************************************************************
   {
-    var device = null;
+    var location = null;
     var create = false;
 
-    locations = await Location.findAll();
-
     if (undefined !== req.params.id) {
-      device = await Device.findByPk(req.params.id, {
-        include : Location
-      });
+      location = await Location.findByPk(req.params.id);
     } else {
-      device = Device.build();
+      location = Location.build();
       create = true;
     }
-    res.render('device/edit', {
-      device: device,
-      deviceid: req.params.id,
+    res.render('location/edit', {
+      location: location,
+      locationid: req.params.id,
       create : create
     });
   },
@@ -54,27 +46,24 @@ const controller = {
       var user = null;
 
       if ('' !== req.body.id) {
-        device = await Device.findByPk(req.body.id);
+        location = await Location.findByPk(req.body.id);
       } else {
-        device = Device.build();
+        location = Location.build();
       }
 
       //update fields here
-      device.name = req.body.name;
-      device.mac = req.body.mac;
-      device.model = req.body.model;
-      device.description = req.body.description;
-      device.setLocation(req.body.location*1);
+      location.name = req.body.name;
+      location.description = req.body.description;
 
       //error Handling
       if (!errors.isEmpty()) {
-        res.render('device/edit', {
-          device: device,
+        res.render('location/edit', {
+          location: location,
           errors: errors
         });
       } else {
-        await device.save();
-        res.redirect('/device');
+        await location.save();
+        res.redirect('/location');
       }
 
 

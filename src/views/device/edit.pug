@@ -12,12 +12,12 @@ block content
                 td(class='infoonly') #{device.mac}
             +textField('name', 'Device Name', device.name)
             +textField('description', 'Description', device.description)
-            //+textField('location', 'Location', device.location)
-            //    td
-            //        label(for="location") Location:
-            //    td
-            //        select(name="location", class="form-control")
-            //            each location in locations 
-            //                option(value=location.id) #{location.name}
+            tr
+                td
+                    label(for="location") Location:
+                td
+                    select(name="location", class="form-control")
+                        each location in locations 
+                            option(value=location.id) #{location.name}
             +textField('model', 'Model', device.model)
             +actions('Submit')
