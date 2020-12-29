@@ -5,3 +5,4 @@ data
 mosquitto/config
 mosquitto/config/mosquitto.conf
 ota-server.code-workspace
+docker-compose.yml
