@@ -15,7 +15,6 @@ const controller = {
     var devices = await Device.findAll({
       include : "Location"
     });
-    console.log(devices);
     res.render('device/index', {
       devices : devices
     });

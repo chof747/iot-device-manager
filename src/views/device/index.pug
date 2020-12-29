@@ -19,7 +19,10 @@ block content
                 td= device.name
                 td= device.description
                 td= device.model
-                td= device.Location.name
+                if null !== device.Location
+                    td= device.Location.name
+                else
+                    td (None)
                 td 
                 td
                 td
