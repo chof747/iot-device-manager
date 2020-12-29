@@ -27,14 +27,30 @@ class TasmotaDiscoverer extends BaseDiscoverer {
     async getInformation(jsonBody) {
 
         if (jsonBody.Status !== undefined) {
-            var device = Device.build({
-                name : jsonBody.Status.Topic,
-                description : jsonBody.Status.DeviceName,
+            var device = await Device.findOne({
+                where : {
+                    mac : jsonBody.StatusNET.Mac
+                }
+            });
+
+            if (null === device) {
+                device = Device.build();
+            }
+
+            //console.log(jsonBody);
+
+            device.set({
+                name : jsonBody.Status.DeviceName,
+                description : jsonBody.Status.FriendlyName.join(" "),
                 mac : jsonBody.StatusNET.Mac,
                 model : jsonBody.StatusFWR.Hardware
             });
-    
-            await device.save();    
+            
+            try {
+                await device.save();    
+            } catch (err) {
+                console.log(err);
+            }
         }
 
     }

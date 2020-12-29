@@ -9,6 +9,7 @@
   "production": {
     "storage": "/var/data/iot-devices.db",
     "dialect": "sqlite",
-    "seederStorage" : "sequelize"
+    "seederStorage" : "sequelize",
+    "logging" : false
   }
 }
