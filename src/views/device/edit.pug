@@ -29,5 +29,6 @@ block content
                         option(value=null) None
                         each firmware in firmwares 
                             option(value=firmware.id, selected=(device.FirmwareId == firmware.id)) #{firmware.name} (#{firmware.versionAvailable})                            
+            +textField('firmwareVersion', 'Installed Firmware Version', device.firmwareVersion)
             +textField('model', 'Model', device.model)
             +actions('Submit')

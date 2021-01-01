@@ -65,6 +65,7 @@ const controller = {
       device.mac = req.body.mac;
       device.model = req.body.model;
       device.description = req.body.description;
+      device.firmwareVersion = req.body.firmwareVersion;
       device.setLocation(req.body.location*1);
       device.setFirmware(req.body.firmware*1);
 

@@ -25,7 +25,11 @@ module.exports = (sequelize, DataTypes) => {
       unique : true
     },
     description: DataTypes.STRING,
-    model: DataTypes.STRING
+    model: DataTypes.STRING,
+    firmwareVersion : {
+      type: DataTypes.STRING,
+      defaultValue : ''
+    }
   }, {
     sequelize,
     modelName: 'Device',
