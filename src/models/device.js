@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Device.belongsTo(models.Location);
+      Device.belongsTo(models.Firmware);
     }
   };
   Device.init({

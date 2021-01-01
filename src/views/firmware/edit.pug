@@ -1,0 +1,14 @@
+extends ../layout.pug
+include ../includes/textfield.pug
+include ../includes/actions.pug
+
+block content
+    h1= (create) ?  'Add Firmware' : 'Edit Firmware'
+    form(method='POST', action='')
+        input(type='hidden', name='id', value=(create) ? '': firmware.id)
+        table
+            +textField('name', 'Firmware Name', (create) ? '' : firmware.name)
+            +textField('versionAvailable', 'Available Version', (create) ? '' : firmware.versionAvailable)
+            +textField('description', 'Firmware Description', (create) ? '' : firmware.description)
+            +textField('url', 'Firmware Location (url)', (create) ? '' : firmware.url)
+            +actions('Submit')

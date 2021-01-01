@@ -1,0 +1,26 @@
+extends ../layout.pug
+include ../includes/actions.pug
+include ../includes/textfield.pug
+
+block content
+    h1 Add Firmware via image
+    form(method='post', enctype='multipart/form-data')
+        table   
+            tr 
+                td Add as a new version to 
+                td 
+                    select(name="firmware", class="form-control")
+                        option(value=0) None
+                        each firmware in firmwares 
+                            option(value=firmware.id) #{firmware.name}
+            tr
+                td Firmware Image:
+                td
+                    input(type='file', name='firmwareupload')
+                    p
+            +textField('versionAvailable', 'Firmware Version', '')
+            +textField('description', 'Description', '')
+
+
+
+            +actions('Upload')
