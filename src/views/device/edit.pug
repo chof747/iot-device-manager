@@ -3,6 +3,7 @@ include ../includes/textfield.pug
 include ../includes/actions.pug
 
 block content
+
     h1 Edit Device
     form(method='POST', action='')
         input(type='hidden', name='id', value=(create) ? '' : device.id)
@@ -17,7 +18,8 @@ block content
                     label(for="location") Location:
                 td
                     select(name="location", class="form-control")
+                        option(value=null) None
                         each location in locations 
-                            option(value=location.id) #{location.name}
+                            option(value=location.id, selected=(device.LocationId == location.id)) #{location.name}
             +textField('model', 'Model', device.model)
             +actions('Submit')
