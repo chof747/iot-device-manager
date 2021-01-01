@@ -21,5 +21,13 @@ block content
                         option(value=null) None
                         each location in locations 
                             option(value=location.id, selected=(device.LocationId == location.id)) #{location.name}
+            tr
+                td
+                    label(for="firmware") Firmware:
+                td
+                    select(name="firmware", class="form-control")
+                        option(value=null) None
+                        each firmware in firmwares 
+                            option(value=firmware.id, selected=(device.FirmwareId == firmware.id)) #{firmware.name} (#{firmware.versionAvailable})                            
             +textField('model', 'Model', device.model)
             +actions('Submit')

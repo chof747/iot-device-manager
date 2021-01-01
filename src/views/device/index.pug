@@ -8,7 +8,7 @@ block content
         th Description
         th Model
         th Location
-        th Firmware Image
+        th Firmware
         th Installed Version
         th Available Version
         th Actions
@@ -23,9 +23,12 @@ block content
                     td= device.Location.name
                 else
                     td (None)
-                td 
-                td
-                td
+                if (null !== device.Firmware)                
+                    td= device.Firmware.name
+                    td
+                    td= device.Firmware.versionAvailable
+                else 
+                    td(colspan=3) (None)
                 td 
                     a(class="action", href=`device/edit/${device.id}`) 
                         span(class='material-icons md-18') edit

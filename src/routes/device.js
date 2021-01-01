@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 //Models needed
 var Device = require('../models/index').Device;
 var Location = require('../models/index').Location;
+var Firmware = require('../models/index').Firmware;
 
 const controller = {
 
@@ -13,7 +14,7 @@ const controller = {
   //***************************************************************************
   {
     var devices = await Device.findAll({
-      include : "Location"
+      include : ["Location", "Firmware"]
     });
     res.render('device/index', {
       devices : devices
@@ -27,6 +28,7 @@ const controller = {
     var create = false;
 
     locations = await Location.findAll();
+    firmwares = await Firmware.findAll();
 
     if (undefined !== req.params.id) {
       device = await Device.findByPk(req.params.id, {
@@ -64,6 +66,7 @@ const controller = {
       device.model = req.body.model;
       device.description = req.body.description;
       device.setLocation(req.body.location*1);
+      device.setFirmware(req.body.firmware*1);
 
       //error Handling
       if (!errors.isEmpty()) {
